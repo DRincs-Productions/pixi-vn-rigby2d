@@ -22,7 +22,7 @@ export default interface RigbyMemory
     roundPixels: boolean;
     autoUpdate: boolean;
     currentSkin: string | null;
-    tracks: (TrackMemory | null)[];
+    tracks: TrackMemory[];
     sequenceTimelines: {
         [track: number]: {
             sequence: ([string, RigbySequenceOptions] | string)[];

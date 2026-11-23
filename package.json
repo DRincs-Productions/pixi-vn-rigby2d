@@ -57,7 +57,7 @@
   },
   "peerDependencies": {
     "@drincs/pixi-vn": ">=1.9.0",
-    "@rigby2d/pixi-js": "^0.6.0"
+    "@rigby2d/pixi-js": "^0.7.0"
   },
   "keywords": [
     "game",

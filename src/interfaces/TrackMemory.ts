@@ -1,11 +1,5 @@
-export default interface TrackMemory {
-    trackIndex: number;
-    animationName: string;
-    loop: boolean;
-    /** Seconds already played, so the animation resumes where it was. */
-    time: number;
-    /** Crossfade in seconds used when it started. */
-    mix: number;
-    /** Animations queued after this one on the same track. */
-    queue: { animationName: string; loop: boolean; mix: number; delay: number | null }[];
-}
+import type { TrackSnapshot } from "@drincs/pixi-vn-rigby2d/core";
+
+/** What a track is playing, stored in a save: see `Rigby.snapshotTracks`. */
+type TrackMemory = TrackSnapshot;
+export default TrackMemory;

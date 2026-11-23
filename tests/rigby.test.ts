@@ -48,9 +48,9 @@ describe("Rigby", () => {
         rigby.update(0.5);
         const memory = rigby.memory;
         expect(memory.tracks[0]).toMatchObject({
-            animationName: "idle",
-            loop: true,
-            queue: [{ animationName: "wave" }],
+            name: "idle",
+            looping: true,
+            queue: [{ name: "wave" }],
         });
         expect(memory.tracks[0]?.time).toBeCloseTo(0.5);
 

@@ -1,4 +1,4 @@
-import type { RigbyMemory, RigbyOptions, RigbySequenceOptions, TrackMemory } from "@/interfaces";
+import type { RigbyMemory, RigbyOptions, RigbySequenceOptions } from "@/interfaces";
 import { CompleteOnContinueTracks } from "@/memory/CompleteOnContinueTracks";
 import { logger } from "@/utils/log-utility";
 import { getSuperPivot } from "@/utils/props-utility";
@@ -209,25 +209,7 @@ export default class Rigby
             roundPixels: this.roundPixels,
             autoUpdate: this.autoUpdate,
             currentSkin: this.skin,
-            tracks: this.state.tracks.map((entry) => {
-                if (!entry) {
-                    return null;
-                }
-                const res: TrackMemory = {
-                    trackIndex: entry.track,
-                    animationName: entry.name,
-                    loop: entry.looping,
-                    time: entry.time,
-                    mix: entry.mixDuration,
-                    queue: entry.queue.map((queued) => ({
-                        animationName: queued.name,
-                        loop: queued.looping,
-                        mix: queued.mixDuration,
-                        delay: queued.delay,
-                    })),
-                };
-                return res;
-            }),
+            tracks: this.snapshotTracks(),
             sequenceTimelines: Object.fromEntries(
                 Object.entries(this.sequenceTimelines).map(
                     ([trackIndex, { sequence, options }]) => [trackIndex, { sequence, options }],
@@ -262,7 +244,7 @@ export default class Rigby
      */
     setAnimation(animationName: string, options: TrackOptions = {}) {
         const { trackIndex = 0, loop = false, mix, completeOnContinue = true } = options;
-        if (!this.animationNames.includes(animationName)) {
+        if (!this.hasAnimation(animationName)) {
             logger.warn(`Animation ${animationName} not found in skeleton ${this.skeletonUrl}`);
             return null;
         }
@@ -287,7 +269,7 @@ export default class Rigby
         } = {},
     ) {
         const { trackIndex = 0, loop = false, mix, delay, completeOnContinue = true } = options;
-        if (!this.animationNames.includes(animationName)) {
+        if (!this.hasAnimation(animationName)) {
             logger.warn(`Animation ${animationName} not found in skeleton ${this.skeletonUrl}`);
             return null;
         }
@@ -360,7 +342,7 @@ export default class Rigby
                 item = [item, {}];
             }
             const [animationName, animOptions] = item;
-            if (!this.animationNames.includes(animationName)) {
+            if (!this.hasAnimation(animationName)) {
                 logger.warn(`Animation ${animationName} not found in skeleton ${this.skeletonUrl}`);
                 return;
             }
@@ -406,14 +388,6 @@ export default class Rigby
         this.sequenceTimelines[trackIndex]?.timeline.stop();
         delete this.sequenceTimelines[trackIndex];
         this.state.clearTrack(trackIndex);
-    }
-    /**
-     * Length in seconds of an animation, or `null` if the skeleton has no animation with that name.
-     * @param name The name of the animation.
-     */
-    animationDuration(name: string): number | null {
-        const animations = this.skeleton.animations as { name: string; duration?: number }[];
-        return animations.find((a) => a.name === name)?.duration ?? null;
     }
     /**
      * Sets the skin. An unknown skin is logged via {@link logger.error} rather than thrown.
@@ -773,25 +747,5 @@ async function setMemoryRigby(element: Rigby, param: RigbyMemory) {
             indexToIgnore.push(index);
             element.playSequence(sequence, { ...options, trackIndex: index });
         });
-    memory.tracks.forEach((track) => {
-        if (!track || indexToIgnore.includes(track.trackIndex)) {
-            return;
-        }
-        try {
-            const entry = element.play(track.animationName, track.loop, 0, track.trackIndex);
-            if (entry) entry.time = track.time;
-            track.queue.forEach((queued) => {
-                element.queue(
-                    queued.animationName,
-                    queued.loop,
-                    queued.mix,
-                    track.trackIndex,
-                    queued.delay,
-                );
-            });
-        } catch (e) {
-            logger.error(`Failed to restore animation ${track.animationName}`, e);
-        }
-    });
-    element.update(0);
+    element.restoreTracks(memory.tracks.filter((track) => !indexToIgnore.includes(track.track)));
 }
