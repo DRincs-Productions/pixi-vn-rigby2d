@@ -76,21 +76,3 @@ With lazy loading (code-split routes, dynamically imported labels, a save loaded
 ```ts
 import "@drincs/pixi-vn-rigby2d";
 ```
-
-## Core submodule
-
-`@drincs/pixi-vn-rigby2d/core` re-exports `@rigby2d/pixi-js` (`rigbyPixi`, `RigbySkeleton` types, and so on), built for the PixiJS that Pixi’VN renders with.
-
-```ts
-import type { RigbyData } from "@drincs/pixi-vn-rigby2d/core";
-```
-
-## Development
-
-```bash
-npm run build   # build the library into dist/
-npm test        # run the Vitest suite
-npm run check   # lint and format check
-```
-
-`playground/` is a small app for trying the extension together with Pixi’VN: `npm run playground:install`, then `npm run playground:dev`.
