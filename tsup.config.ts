@@ -4,6 +4,26 @@ export default defineConfig([
     {
         target: "es2020",
         entry: {
+            core: "src/core/index.ts",
+        },
+        format: ["esm"],
+        dts: true,
+        treeshake: true,
+        clean: true,
+        minify: true,
+        bundle: true,
+        skipNodeModulesBundle: false,
+        external: ["pixi.js", "@rigby2d/pixi-js"],
+        esbuildOptions(options) {
+            options.alias = {
+                ...options.alias,
+                "pixi.js": "@drincs/pixi-vn/pixi.js",
+            };
+        },
+    },
+    {
+        target: "es2020",
+        entry: {
             index: "src/index.ts",
         },
         format: ["cjs", "esm"],
@@ -13,7 +33,7 @@ export default defineConfig([
         minify: true,
         bundle: true,
         skipNodeModulesBundle: false,
-        external: ["@drincs/pixi-vn", "pixi.js"],
+        external: ["@drincs/pixi-vn", "pixi.js", "@drincs/pixi-vn-rigby2d/core"],
         outExtension({ format }) {
             return {
                 js: format === "esm" ? ".mjs" : ".cjs",

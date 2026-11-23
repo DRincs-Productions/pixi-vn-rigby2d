@@ -16,7 +16,7 @@ import {
     setMemoryContainer,
 } from "@drincs/pixi-vn";
 import { type SegmentOptions, timeline } from "@drincs/pixi-vn/motion";
-import { type RigbyData, rigbyPixi } from "@rigby2d/pixi-js";
+import { type RigbyData, rigbyPixi } from "@drincs/pixi-vn-rigby2d/core";
 import type { AnimationPlaybackControlsWithThen, SequenceOptions } from "motion";
 import * as PIXI from "pixi.js";
 import type {

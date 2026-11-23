@@ -35,6 +35,12 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
       "default": "./dist/index.mjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.js",
+      "default": "./dist/core.js"
     }
   },
   "devDependencies": {
@@ -61,5 +67,12 @@
     "pixi-vn",
     "visual",
     "visual-novel"
-  ]
+  ],
+  "typesVersions": {
+    "*": {
+      "core": [
+        "./dist/core.d.ts"
+      ]
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import type { ContainerOptions } from "@drincs/pixi-vn";
-import type { RigbySkeletonOptions } from "@rigby2d/pixi-js";
+import type { RigbySkeletonOptions } from "@drincs/pixi-vn-rigby2d/core";
 
 export default interface RigbyOptions
     extends Omit<RigbySkeletonOptions, "ticker" | "label" | "skin">,

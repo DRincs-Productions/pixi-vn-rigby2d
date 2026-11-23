@@ -13,8 +13,26 @@ const skeleton = {
         },
     ],
     animations: {
-        idle: { bones: { root: { rotate: [{ time: 0, value: 0 }, { time: 1, value: 10 }] } } },
-        wave: { bones: { root: { rotate: [{ time: 0, value: 0 }, { time: 2, value: 20 }] } } },
+        idle: {
+            bones: {
+                root: {
+                    rotate: [
+                        { time: 0, value: 0 },
+                        { time: 1, value: 10 },
+                    ],
+                },
+            },
+        },
+        wave: {
+            bones: {
+                root: {
+                    rotate: [
+                        { time: 0, value: 0 },
+                        { time: 2, value: 20 },
+                    ],
+                },
+            },
+        },
     },
 };
 
@@ -42,7 +60,8 @@ export function rigbyTestData() {
         const { Assets } = await import("pixi.js");
         const load = Assets.load.bind(Assets);
         Assets.load = ((input: unknown) => {
-            if (typeof input === "object" && input && "src" in input) return Promise.resolve(Texture.WHITE);
+            if (typeof input === "object" && input && "src" in input)
+                return Promise.resolve(Texture.WHITE);
             return load(input as never);
         }) as typeof Assets.load;
         await Rigby.load("tiny.json", "tiny.atlas");

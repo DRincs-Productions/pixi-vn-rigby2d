@@ -4,6 +4,8 @@
     "experimentalDecorators": true,
     "module": "esnext",
     "paths": {
+      "@drincs/pixi-vn-rigby2d": ["./src/index.ts"],
+      "@drincs/pixi-vn-rigby2d/core": ["./src/core/index.ts"],
       "pixi.js": ["./node_modules/@drincs/pixi-vn/pixi.js"],
       "@/*": ["./src/*"]
     },
