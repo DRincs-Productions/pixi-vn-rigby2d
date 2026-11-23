@@ -3,10 +3,13 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "convert:mecha": "node scripts/convert-dragonbones.mjs assets-src/mecha/mecha_1502b_ske.json assets-src/mecha/mecha_1502b_tex.json mecha_1502b public/mecha mecha"
   },
   "dependencies": {
-    "@drincs/pixi-vn": "^1.8.21"
+    "@drincs/pixi-vn": "^1.8.21",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

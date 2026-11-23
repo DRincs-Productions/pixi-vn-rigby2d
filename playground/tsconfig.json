@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
@@ -14,7 +14,8 @@
     "strict": true,
     "types": ["node"],
     "paths": {
-      "my-app-package-name": ["../src/index.ts"],
+      "@drincs/pixi-vn-rigby2d/core": ["../src/core/index.ts"],
+      "@drincs/pixi-vn-rigby2d": ["../src/index.ts"],
       "@/*": ["../src/*"]
     }
   },

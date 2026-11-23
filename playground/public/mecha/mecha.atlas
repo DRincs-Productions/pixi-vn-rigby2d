@@ -1,0 +1,27 @@
+mecha.png
+size: 512, 512
+filter: Linear, Linear
+mecha_1502b_folder/thigh_1_l_0
+bounds: 434, 185, 50, 32
+mecha_1502b_folder/shouder_r_1
+bounds: 465, 144, 43, 39
+mecha_1502b_folder/thigh_l
+bounds: 84, 118, 101, 57
+mecha_1502b_folder/calf_r
+bounds: 84, 1, 126, 52
+mecha_1502b_folder/foot_l_0
+bounds: 434, 77, 29, 106
+mecha_1502b_folder/calf_l
+bounds: 84, 177, 122, 46
+mecha_1502b_folder/thigh_r
+bounds: 84, 55, 103, 61
+mecha_1502b_folder/pelvis
+bounds: 465, 77, 41, 65
+mecha_1502b_folder/thigh_1_r_1
+bounds: 262, 1, 55, 32
+mecha_1502b_folder/chest
+bounds: 1, 236, 89, 192
+mecha_1502b_folder/foot_r
+bounds: 403, 77, 29, 109
+mecha_1502b_folder/shouder_l_0
+bounds: 319, 1, 44, 39
